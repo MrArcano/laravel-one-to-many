@@ -47,10 +47,10 @@ class ProjectController extends Controller
         $form_data = $request->all();
 
         $form_data['slug'] = Helper::generateSlug($form_data['name'] , Project::class);
-        // nel form_data inserisco il nome dell'immagine
-        $form_data['image_name'] = $request->file('image')->getClientOriginalName();
         // verifico se esiste l'immagine
         if(array_key_exists('image', $form_data)){
+            // nel form_data inserisco il nome dell'immagine
+            $form_data['image_name'] = $request->file('image')->getClientOriginalName();
             $img_path = Storage::put('uploads', $form_data['image']);
             $form_data['image'] = $img_path;
         }
