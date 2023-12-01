@@ -24,6 +24,7 @@ class Project extends Model
         "is_group_project",
         "image",
         "image_name",
+        "type_id",
     ] ;
 
 }

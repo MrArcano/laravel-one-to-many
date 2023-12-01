@@ -67,6 +67,25 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+
+                                <label for="type_id" class="form-label fw-bold">Tipi: </label>
+                                <select id="type_id" class="form-select @error('type_id') is-invalid @enderror" name="type_id">
+                                    <option value="">Seleziona una tipologia</option>
+                                    @foreach ($types as $type)
+                                        <option {{ old('type_id',$project?->type?->id) === $type->id ? 'selected' : '' }} value="{{$type->id}}">{{$type->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('type_id')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-12">
                             <div class="mb-3">

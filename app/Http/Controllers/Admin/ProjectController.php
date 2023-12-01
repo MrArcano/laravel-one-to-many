@@ -6,6 +6,7 @@ use App\Functions\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProjectRequest;
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,7 +34,8 @@ class ProjectController extends Controller
         $method = 'POST';
         $project = null;
         $route = route('admin.project.store');
-        return view('admin.projects.create_edit', compact('project','route','method','title'));
+        $types = Type::all();
+        return view('admin.projects.create_edit', compact('project','route','method','title','types'));
     }
 
     /**
@@ -83,7 +85,9 @@ class ProjectController extends Controller
         $title = 'Admin Project - Edit';
         $method = 'PUT';
         $route = route('admin.project.update', $project);
-        return view('admin.projects.create_edit', compact('project','route','method','title'));
+        $types = Type::all();
+
+        return view('admin.projects.create_edit', compact('project','route','method','title','types'));
     }
 
     /**
