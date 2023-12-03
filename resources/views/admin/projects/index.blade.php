@@ -19,7 +19,20 @@
                     <th scope="col">Data fine</th>
                     <th scope="col">Stato</th>
                     <th scope="col">Teamwork</th>
-                    <th scope="col">Type</th>
+                    <th scope="col">
+                        <form id="formType" action="{{ route('admin.project.index') }}" method="GET">
+                            <select onchange="filterType()" id="type_id" name="type_id">
+                                <option value="">Type</option>
+                                @foreach ($types as $type)
+                                    <option value="{{$type->id}}" @if ($type->id === $type_id)
+                                        select
+                                    @endif>{{$type->name}}</option>
+                                @endforeach
+                                <option value="">All</option>
+                            </select>
+                        </form>
+
+                    </th>
                     <th scope="col">Azioni</th>
                 </tr>
             </thead>
@@ -62,4 +75,15 @@
             {{ $projects->links() }}
         </div>
     </div>
+
+    <script>
+        function filterType(){
+            // id="type_id"
+            const select_type = document.getElementById("type_id");
+            console.log(select_type.value);
+            const formType = document.getElementById("formType");
+            formType.submit();
+        }
+    </script>
+
 @endsection

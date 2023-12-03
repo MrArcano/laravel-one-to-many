@@ -17,10 +17,19 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::orderBy("id","desc")->paginate(10);
-        return view('admin.projects.index', compact('projects'));
+        $type_id = $request->all();
+        $types = Type::all();
+        if($type_id){
+            if($type_id['type_id']){
+                $projects = Project::where("type_id",$type_id['type_id'])->orderBy("id","desc")->paginate(10);
+            }else{
+                $projects = Project::orderBy("id","desc")->paginate(10);
+            }
+        }else{
+            $projects = Project::orderBy("id","desc")->paginate(10);}
+        return view('admin.projects.index', compact('projects','types','type_id'));
     }
 
     /**

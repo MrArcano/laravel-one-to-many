@@ -112,7 +112,9 @@
                                   onerror="this.src ='/img/placeholder.png'"
                                   src="{{ asset('storage/'. $project?->image ) }}"
                                   alt="{{ $project?->image_name }}">
-                                  <a class="btn btn-secondary position-absolute end-0 top-0" href="{{ route('admin.project.delete-image', $project)}}"><i class="fa-solid fa-xmark"></i></a>
+                                @if ($project)
+                                    <a class="btn btn-secondary position-absolute end-0 top-0" href="{{ route('admin.project.delete-image', $project)}}"><i class="fa-solid fa-xmark"></i></a>
+                                @endif
                             </div>
 
                         <input onchange="previewImage(event)" type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
