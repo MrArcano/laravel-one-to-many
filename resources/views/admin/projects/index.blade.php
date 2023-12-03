@@ -1,7 +1,5 @@
 @extends('layouts.admin')
 
-
-
 @section('content')
     <div class="project">
         <h1 class="text-center mb-3">Admin Project</h1>
@@ -19,16 +17,13 @@
                     <th scope="col">Data fine</th>
                     <th scope="col">Stato</th>
                     <th scope="col">Teamwork</th>
-                    <th scope="col">
-                        <form id="formType" action="{{ route('admin.project.index') }}" method="GET">
-                            <select onchange="filterType()" id="type_id" name="type_id">
-                                <option value="">Type</option>
-                                @foreach ($types as $type)
-                                    <option value="{{$type->id}}" @if ($type->id === $type_id)
-                                        select
-                                    @endif>{{$type->name}}</option>
-                                @endforeach
+                    <th scope="col">Type:
+                        <form class=" d-inline-block" id="formType" action="{{ route('admin.project.index') }}" method="GET">
+                            <select class="bg-transparent border-0" onchange="filterType()" id="type_id" name="type_id">
                                 <option value="">All</option>
+                                @foreach ($types as $type)
+                                    <option {{ $type_id_form == $type->id ? 'selected' : '' }} value="{{$type->id}}">{{$type->name}}</option>
+                                @endforeach
                             </select>
                         </form>
 
@@ -78,9 +73,6 @@
 
     <script>
         function filterType(){
-            // id="type_id"
-            const select_type = document.getElementById("type_id");
-            console.log(select_type.value);
             const formType = document.getElementById("formType");
             formType.submit();
         }

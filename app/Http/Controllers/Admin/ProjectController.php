@@ -19,17 +19,14 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        $type_id = $request->all();
+        $type_id_form = $request->type_id;
         $types = Type::all();
-        if($type_id){
-            if($type_id['type_id']){
-                $projects = Project::where("type_id",$type_id['type_id'])->orderBy("id","desc")->paginate(10);
-            }else{
-                $projects = Project::orderBy("id","desc")->paginate(10);
-            }
+        if($type_id_form){
+            $projects = Project::where("type_id",$type_id_form)->orderBy("id","desc")->paginate(10);
         }else{
-            $projects = Project::orderBy("id","desc")->paginate(10);}
-        return view('admin.projects.index', compact('projects','types','type_id'));
+            $projects = Project::orderBy("id","desc")->paginate(10);
+        }
+        return view('admin.projects.index', compact('projects','types','type_id_form'));
     }
 
     /**
