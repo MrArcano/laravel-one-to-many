@@ -36,6 +36,7 @@ Route::middleware(['auth','verified'])
             Route::resource('project', ProjectController::class);
             Route::resource('tecnology', TecnologyController::class);
             Route::resource('type', TypeController::class);
+            Route::get('project/{project}/delete-image',[ProjectController::class,'destroy_image'])->name('project.delete-image');
         });
 
 require __DIR__.'/auth.php';

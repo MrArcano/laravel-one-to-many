@@ -105,13 +105,14 @@
                     <div class="mb-3">
                         <label for="image" class="form-label fw-bold">Immagine: </label>
 
-                            <div class=" mb-3 ">
+                            <div class="mb-3 position-relative">
                                 <img
                                   id="image-preview"
                                   class="img-fluid rounded"
                                   onerror="this.src ='/img/placeholder.png'"
                                   src="{{ asset('storage/'. $project?->image ) }}"
                                   alt="{{ $project?->image_name }}">
+                                  <a class="btn btn-secondary position-absolute end-0 top-0" href="{{ route('admin.project.delete-image', $project)}}"><i class="fa-solid fa-xmark"></i></a>
                             </div>
 
                         <input onchange="previewImage(event)" type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
@@ -122,7 +123,7 @@
                 </div>
             </div>
 
-            {{-- <a href="#"><i class="fa-solid fa-xmark"></i></a> --}}
+
 
             <div class="d-flex justify-content-center">
                 <button class="btn btn-secondary w-100 fs-3  btn-custom" type="submit">Salva</button>
