@@ -98,6 +98,19 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    @foreach ($tecnologies as $tecnology)
+                                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="btncheck1">Checkbox 1</label>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">

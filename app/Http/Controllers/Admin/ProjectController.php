@@ -6,6 +6,7 @@ use App\Functions\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProjectRequest;
 use App\Models\Project;
+use App\Models\Tecnology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,8 +20,16 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        $type_id_form = $request->type_id;
+        // Lista dei tipi
         $types = Type::all();
+
+        dump($_GET);
+
+        // Filtro per id tipo
+        $type_id_form = $request->type_id;
+        dump($type_id_form);
+
+        // Lista dei progetti
         if($type_id_form){
             $projects = Project::where("type_id",$type_id_form)->orderBy("id","desc")->paginate(10);
         }else{
@@ -41,7 +50,8 @@ class ProjectController extends Controller
         $project = null;
         $route = route('admin.project.store');
         $types = Type::all();
-        return view('admin.projects.create_edit', compact('project','route','method','title','types'));
+        $tecnologies = Tecnology::all();
+        return view('admin.projects.create_edit', compact('project','route','method','title','types','tecnologies'));
     }
 
     /**
@@ -92,8 +102,9 @@ class ProjectController extends Controller
         $method = 'PUT';
         $route = route('admin.project.update', $project);
         $types = Type::all();
+        $tecnologies = Tecnology::all();
 
-        return view('admin.projects.create_edit', compact('project','route','method','title','types'));
+        return view('admin.projects.create_edit', compact('project','route','method','title','types','tecnologies'));
     }
 
     /**

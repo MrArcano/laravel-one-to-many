@@ -35,8 +35,7 @@ Route::middleware(['auth','verified'])
             Route::get('/',[DashboardController::class,'index'])->name('home');
             Route::resource('tecnology', TecnologyController::class);
             Route::resource('type', TypeController::class);
-            Route::resource('project', ProjectController::class)->except(['index']);
-            Route::get('project/{type?}', [ProjectController::class,'index'])->name('project.index');
+            Route::resource('project', ProjectController::class);
             Route::get('project/{project}/delete-image',[ProjectController::class,'destroy_image'])->name('project.delete-image');
         });
 

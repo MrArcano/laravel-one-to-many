@@ -28,6 +28,7 @@
                         </form>
 
                     </th>
+                    <th>Tecnology</th>
                     <th scope="col">Azioni</th>
                 </tr>
             </thead>
@@ -51,6 +52,14 @@
                         <td>{{$project->status}}</td>
                         <td>{{$project->is_group_project}}</td>
                         <td>{{$project->type->name ?? '-'}}</td>
+                        <td>
+                            @forelse ($project->tecnologies as $tecnology)
+                            <span class="badge text-bg-info">{{$tecnology->name}}</span>
+
+                            @empty
+                                -
+                            @endforelse
+                        </td>
                         <td>
                             <a class="btn btn-secondary btn-custom" href="{{route('admin.project.show',$project)}}"><i class="fa-solid fa-eye"></i></a>
 
